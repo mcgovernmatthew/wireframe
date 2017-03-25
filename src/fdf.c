@@ -114,13 +114,12 @@ int				main(int argc, char **argv)
 		return(0);
 	fd = open(argv[1], O_RDONLY);
 	env = make_env(argv[1], 1920, 1080);
-	scale_xy(env->grid, SCALE);
-	scale_z(env->grid, HEIGHT);
+	scale_xy(env->grid, ft_atoi(argv[3]));
+	scale_z(env->grid, ft_atoi(argv[2]));
 	printf("%s\n", "buttz2");
 	connect_points(env);
 	printf("%s\n", "buttz");
 	mlx_put_image_to_window(env->mlx, env->window, env->img, 0, 0);
-	// printf("%s\n", "buttz73000");
 	mlx_hook(env->window, 2, 0, key_press, env);
 	mlx_loop(env->mlx);
 	return (0);

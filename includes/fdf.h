@@ -12,8 +12,6 @@
 
 #ifndef FDF_H
 # define FDF_H
-#define SCALE ft_atoi(argv[3])
-#define HEIGHT ft_atoi(argv[2])
 
 #include <unistd.h>
 #include <fcntl.h>
@@ -23,7 +21,7 @@
 #include <mlx.h>
 #include "fdf.h"
 
-typedef struct		s_line
+typedef struct					s_line
 {
 	int							x0;
 	int							y0;
@@ -37,23 +35,16 @@ typedef struct		s_line
 	int							steep;
 	int							y;
 	int							x;
-}									t_line;
+}								t_line;
 
-typedef	struct		s_point
+typedef	struct					s_point
 {
 	float						x;
 	float						y;
 	float						z;
-}									t_point;
+}								t_point;
 
-// typedef struct	s_vectors
-// {
-// 	t_point		local;
-// 	t_point		global;
-// 	t_point		camera;
-// 	t_point		view;
-// }				t_vectors;
-typedef struct		s_keys
+typedef struct					s_keys
 {
 	int							w;
 	int							a;
@@ -63,27 +54,27 @@ typedef struct		s_keys
 	int							e;
 	int							plus;
 	int							minus;
-}									t_keys;
+}								t_keys;
 
-typedef	struct		s_rot
+typedef	struct					s_rot
 {
-	double					x;
-	double					y;
-	double					z;
-	double					d;
-	double					theta;
-}									t_rot;
+	double						x;
+	double						y;
+	double						z;
+	double						d;
+	double						theta;
+}								t_rot;
 
-typedef struct		s_grid
+typedef struct					s_grid
 {
 	int							xy_scale;
 	int							z_scale;
 	int							xlen;
 	int							ylen;
-	t_point					**points;
-}									t_grid;
+	t_point						**points;
+}								t_grid;
 
-typedef struct		s_img
+typedef struct					s_img
 {
 	void						*img;
 	char						*data;
@@ -92,14 +83,14 @@ typedef struct		s_img
 	int							endian;
 	int							height;
 	int							width;
-}									t_img;
+}								t_img;
 
-typedef struct 		s_env
+typedef struct 					s_env
 {
-	t_keys					keys;
+	t_keys						keys;
 	void						*mlx;
 	void						*window;
-	t_grid					grid;
+	t_grid						grid;
 	int							width;
 	int							height;
 	int							halfwide;
@@ -109,12 +100,12 @@ typedef struct 		s_env
 	int							bits;
 	int							size_line;
 	int							endian;
-}									t_env;
+}								t_env;
 
 void							pixel_to_image(t_env *env, int x, int y, int color);
-t_point						**make_points(char *buff, int xlen, int ylen);
-t_grid						*make_grid(int fd);
-t_point						set_point(float x, float y, float z);
+t_point							**make_points(char *buff, int xlen, int ylen);
+t_grid							*make_grid(int fd);
+t_point							set_point(float x, float y, float z);
 void							line_draw(t_line line, t_env *env);
 float							mean_x(t_grid grid);
 float							mean_y(t_grid grid);
@@ -122,15 +113,15 @@ float							mean_z(t_grid grid);
 void 							rotate_x(t_grid grid, float radians);
 void 							rotate_y(t_grid grid, float radians);
 void 							rotate_z(t_grid grid, float radians);
-t_line						make_line(t_point start, t_point end, int xoff, int yoff);
+t_line							make_line(t_point start, t_point end, int xoff, int yoff);
 void 							scale_z(t_grid grid, float scale);
 void							scale_xy(t_grid grid, float scale);
 int								get_xoff(t_env *env);
 int								get_yoff(t_env *env);
 void							connect_points(t_env *env);
-t_keys						make_keys(void);
+t_keys							make_keys(void);
 int 							key_press(int keycode, t_env *env);
 t_env							*make_env(char *filename, int width, int height);
-t_point						get_center(t_grid grid);
+t_point							get_center(t_grid grid);
 
 #endif

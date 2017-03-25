@@ -25,7 +25,6 @@ t_keys			make_keys(void)
 
 int 			key_press(int keycode, t_env *env)
 {
-	// printf("key_press: %i\n", keycode);
 	if (env->img)
 		mlx_destroy_image(env->mlx, env->img);
 	env->img = mlx_new_image(env->mlx, env->width, env->height);
