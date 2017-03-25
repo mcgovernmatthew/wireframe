@@ -12,17 +12,6 @@
 
 #include "fdf.h"
 
-t_keys			make_keys(void)
-{
-	t_keys 		keys;
-
-	keys.w = 0;
-	keys.a = 0;
-	keys.s = 0;
-	keys.d = 0;
-	return (keys);
-}
-
 int 			key_press(int keycode, t_env *env)
 {
 	if (env->img)

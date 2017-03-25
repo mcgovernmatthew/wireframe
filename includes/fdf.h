@@ -44,18 +44,6 @@ typedef	struct					s_point
 	float						z;
 }								t_point;
 
-typedef struct					s_keys
-{
-	int							w;
-	int							a;
-	int							s;
-	int							d;
-	int							q;
-	int							e;
-	int							plus;
-	int							minus;
-}								t_keys;
-
 typedef	struct					s_rot
 {
 	double						x;
@@ -87,7 +75,6 @@ typedef struct					s_img
 
 typedef struct 					s_env
 {
-	t_keys						keys;
 	void						*mlx;
 	void						*window;
 	t_grid						grid;
@@ -119,7 +106,6 @@ void							scale_xy(t_grid grid, float scale);
 int								get_xoff(t_env *env);
 int								get_yoff(t_env *env);
 void							connect_points(t_env *env);
-t_keys							make_keys(void);
 int 							key_press(int keycode, t_env *env);
 t_env							*make_env(char *filename, int width, int height);
 t_point							get_center(t_grid grid);

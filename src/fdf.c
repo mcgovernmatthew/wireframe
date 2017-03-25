@@ -101,7 +101,6 @@ t_env			*make_env(char *filename, int width, int height)
 	env->height = height;
 	env->halfhigh = (height / 2);
 	env->halfwide = (width / 2);
-	env->keys = make_keys();
 	return (env);
 }
 
