@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   grid.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmcgover <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/24 19:27:06 by mmcgover          #+#    #+#             */
+/*   Updated: 2017/03/24 19:27:07 by mmcgover         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 t_point			**make_points(char *buff, int xlen, int ylen)
@@ -39,7 +51,6 @@ t_grid			*make_grid(int fd)
 	xlen = 0;
 	ylen = 0;
 	buff = "";
-
 	grid = (t_grid *)malloc(sizeof(t_grid));
 	while (get_next_line(fd, &line))
 	{
