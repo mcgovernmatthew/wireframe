@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void 			rotate_x(t_grid grid, float radians)
+void			rotate_x(t_grid grid, float radians)
 {
 	int			x;
 	int			y;
@@ -38,12 +38,12 @@ void 			rotate_x(t_grid grid, float radians)
 	}
 }
 
-void 	rotate_y(t_grid grid, float radians)
+void			rotate_y(t_grid grid, float radians)
 {
-	int		x;
-	int		y;
-	t_rot	rot;
-	t_point	center;
+	int			x;
+	int			y;
+	t_rot		rot;
+	t_point		center;
 
 	y = 0;
 	center = get_center(grid);
@@ -64,12 +64,12 @@ void 	rotate_y(t_grid grid, float radians)
 	}
 }
 
-void 	rotate_z(t_grid grid, float radians)
+void			rotate_z(t_grid grid, float radians)
 {
-	int		x;
-	int		y;
-	t_rot	rot;
-	t_point	center;
+	int			x;
+	int			y;
+	t_rot		rot;
+	t_point		center;
 
 	y = 0;
 	center = get_center(grid);

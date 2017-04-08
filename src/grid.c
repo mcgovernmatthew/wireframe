@@ -18,7 +18,7 @@ t_point			**make_points(char *buff, int xlen, int ylen)
 	int			x;
 	int			y;
 	char		**split;
-	t_point	**points;
+	t_point		**points;
 
 	split = ft_strsplit(buff, ' ');
 	points = (t_point **)malloc(sizeof(t_point *) * ylen);
@@ -37,7 +37,14 @@ t_point			**make_points(char *buff, int xlen, int ylen)
 		}
 		y++;
 	}
-	return(points);
+	return (points);
+}
+
+void			*ft_invalid(t_grid *grid)
+{
+	free(grid);
+	err_msg("Parameters are invalid.\n");
+	exit(1);
 }
 
 t_grid			*make_grid(int fd)
@@ -58,11 +65,7 @@ t_grid			*make_grid(int fd)
 		if (xlen == 0)
 			xlen = ft_wordcount(line, ' ');
 		if (xlen != ft_wordcount(line, ' '))
-		{
-			printf("%s\n", "parameters are invalid");
-			grid = 0;
-			return (grid);
-		}
+			ft_invalid(grid);
 		ylen++;
 	}
 	grid->points = make_points(buff, xlen, ylen);

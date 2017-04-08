@@ -31,36 +31,28 @@ void			line_draw(t_line line, t_env *env)
 {
 	line.steep = (abs(line.y1 - line.y0) > abs(line.x1 - line.x0)) ? 1 : 0;
 	if (line.steep)
-		ft_swaplol(&line.x0, &line.y0, &line.x1, &line.y1);
+		ft_swaptwo(&line.x0, &line.y0, &line.x1, &line.y1);
 	if (line.x0 > line.x1)
-		ft_swaplol(&line.x0, &line.x1, &line.y0, &line.y1);
+		ft_swaptwo(&line.x0, &line.x1, &line.y0, &line.y1);
 	line.deltax = line.x1 - line.x0;
 	line.deltay = abs(line.y1 - line.y0);
 	line.error = 0;
 	line.deltaerr = line.deltay / line.deltax;
 	line.y = line.y0;
-	(line.y0 < line.y1) ? (line.ystep = 1) : (line.ystep = -1);
+	if (line.y0 < line.y1)
+		line.ystep = 1;
+	else
+		line.ystep = -1;
 	line.x = line.x0;
-	while (line.x != line.x1)
-	{
-		(line.steep) ? (pixel_to_image(env, line.y, line.x, 0xffffff)) :
-		(pixel_to_image(env, line.x, line.y, 0xffffff));
-		line.error = line.error + line.deltaerr;
-		if (line.error > 0.5)
-		{
-			line.y += line.ystep;
-			line.error--;
-		}
-		line.x++;
-	}
+	draw_image(line, env);
 }
 
 void			connect_points(t_env *env)
 {
-	int x;
-	int y;
-	int x_off;
-	int y_off;
+	int			x;
+	int			y;
+	int			x_off;
+	int			y_off;
 
 	y = 0;
 	x_off = get_xoff(env);
@@ -108,16 +100,20 @@ int				main(int argc, char **argv)
 {
 	int			fd;
 	t_env		*env;
+	int			scale;
 
-	if (argc != 4)
-		return(0);
+	if (argc != 3)
+		return (err_msg("Usage: ./fdf <filename> [grid spacing] \n"));
 	fd = open(argv[1], O_RDONLY);
+	if (fd  < 0)
+		return (err_msg("File does not exist.\n"));
+	if (ft_atoi(argv[2]) + 1 < 0)
+		return (err_msg("Minimum spacing of 0 px.\n"));
+	scale = ft_atoi(argv[2]) + 1;
 	env = make_env(argv[1], 1920, 1080);
-	scale_xy(env->grid, ft_atoi(argv[3]));
-	scale_z(env->grid, ft_atoi(argv[2]));
-	printf("%s\n", "buttz2");
+	scale_xy(env->grid, scale);
+	scale_z(env->grid, scale);
 	connect_points(env);
-	printf("%s\n", "buttz");
 	mlx_put_image_to_window(env->mlx, env->window, env->img, 0, 0);
 	mlx_hook(env->window, 2, 0, key_press, env);
 	mlx_loop(env->mlx);

@@ -19,7 +19,7 @@ t_point			get_center(t_grid grid)
 
 t_point			set_point(float x, float y, float z)
 {
-	t_point point;
+	t_point 	point;
 
 	point.x = x;
 	point.y = y;
@@ -27,17 +27,17 @@ t_point			set_point(float x, float y, float z)
 	return (point);
 }
 
-int		get_xoff(t_env *env)
+int				get_xoff(t_env *env)
 {
-	t_point center;
+	t_point 	center;
 
 	center = get_center(env->grid);
 	return (env->halfwide - center.x);
 }
 
-int		get_yoff(t_env *env)
+int				get_yoff(t_env *env)
 {
-	t_point center;
+	t_point		center;
 
 	center = get_center(env->grid);
 	return (env->halfhigh - center.y);

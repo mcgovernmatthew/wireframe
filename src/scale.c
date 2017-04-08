@@ -12,10 +12,10 @@
 
 #include "fdf.h"
 
-void 	scale_z(t_grid grid, float scale)
+void			scale_z(t_grid grid, float scale)
 {
-	int x;
-	int y;
+	int			x;
+	int			y;
 
 	y = 0;
 	while (y < grid.ylen)
@@ -23,7 +23,7 @@ void 	scale_z(t_grid grid, float scale)
 		x = 0;
 		while (x < grid.xlen)
 		{
-			grid.points[y][x].z *= scale;
+			grid.points[y][x].z *= .3333333 * scale;
 			x++;
 		}
 		y++;
